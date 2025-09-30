@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="무적돌진의 구매대행 마진 계산기 - 다국가 통화 지원, 정확한 세금 계산, 실시간 환율로 안전한 수익률 보장">
+    <meta name="keywords" content="구매대행, 마진계산기, 환율계산, 수익계산, 해외직구, 무적돌진">
+    <meta name="author" content="무적돌진">
+    
+    <!-- Open Graph 메타태그 (소셜 공유용) -->
+    <meta property="og:title" content="무적돌진의 구매대행 마진 계산기">
+    <meta property="og:description" content="다국가 통화 지원, 정확한 세금 계산으로 안전한 구매대행 수익률을 확보하세요!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/667eea/ffffff?text=무적돌진+구매대행+마진+계산기">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <title>무적돌진의 구매대행 마진 계산기</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #e9ecef;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.4rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input[type="number"], input[type="text"], select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input[type="number"]:focus, input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .unit {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-small {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .preset-btn {
+            background: white;
+            border: 2px solid #e9ecef;
+            color: #495057;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .preset-btn:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .preset-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .results {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .result-item {
+            margin-bottom: 20px;
+        }
+
+        .result-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .result-highlight {
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .result-highlight .result-value {
+            font-size: 2.2rem;
+        }
+
+        .breakdown {
+            background: white;
+            color: #495057;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .breakdown-subtotal {
+            background: #f8f9fa;
+            padding: 12px 15px !important;
+            margin: 10px -15px !important;
+            border-radius: 8px;
+            border: none !important;
+        }
+
+        .breakdown-final {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white !important;
+            padding: 15px !important;
+            margin: 15px -15px 0 -15px !important;
+            border-radius: 10px;
+            border: none !important;
+            font-size: 1.1rem;
+        }
+
+        .breakdown-final span {
+            color: white !important;
+        }
+
+        .exchange-rate-info {
+            background: #e7f3ff;
+            border: 1px solid #b3d7ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #0066cc;
+        }
+
+        .loading {
+            display: none;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .form-group {
+                flex-direction: column;
+            }
+
+            .input-group {
+                min-width: unset;
+            }
+
+            .preset-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .result-highlight .result-value {
+                font-size: 1.8rem;
+            }
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .add-currency-form {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .currency-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .currency-custom {
+            background: linear-gradient(45deg, #28a745, #20c997) !important;
+            color: white !important;
+        }
+
+        .btn-danger {
+            background: #dc3545 !important;
+        }
+
+        .btn-danger:hover {
+            background: #c82333 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 무적돌진의 구매대행 마진 계산기</h1>
+            <p>정확한 마진 계산으로 안전한 수익률 확보</p>
+        </div>
+
+        <div class="content">
+            <!-- 상품 정보 -->
+            <div class="section">
+                <h3 class="section-title">
+                    <span class="icon">🛍️</span>
+                    상품 정보
+                </h3>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="productPrice">현지 상품가격</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="productPrice" step="0.01" placeholder="99.99">
+                            <span class="unit" id="productPriceUnit">USD</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="shippingFee">배송비</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="shippingFee" step="100" placeholder="50000">
+                            <span class="unit">원</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 환율 정보 -->
+            <div class="section">
+                <h3 class="section-title">
+                    <span class="icon">💱</span>
+                    환율 정보
+                    <button type="button" class="btn btn-small" id="addCurrencyBtn" style="margin-left: auto;">
+                        ➕ 통화 추가
+                    </button>
+                </h3>
+                
+                <!-- 통화 추가 폼 (기본 숨김) -->
+                <div id="addCurrencyForm" class="add-currency-form" style="display: none;">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="newCurrencyCode">통화 코드</label>
+                            <input type="text" id="newCurrencyCode" placeholder="예: AUD" maxlength="3" style="text-transform: uppercase;">
+                        </div>
+                        <div class="input-group">
+                            <label for="newCurrencyName">통화 이름</label>
+                            <input type="text" id="newCurrencyName" placeholder="예: 호주 달러">
+                        </div>
+                        <div class="input-group">
+                            <label for="newCurrencyFlag">국기 이모지</label>
+                            <input type="text" id="newCurrencyFlag" placeholder="🇦🇺" maxlength="2">
+                        </div>
+                        <div class="input-group">
+                            <label for="newCurrencyRate">기본 환율</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="newCurrencyRate" step="0.1" placeholder="900">
+                                <span class="unit">원</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 15px;">
+                        <button type="button" class="btn" id="saveCurrency" style="background: #28a745;">
+                            💾 저장
+                        </button>
+                        <button type="button" class="btn" id="cancelAddCurrency" style="background: #6c757d;">
+                            ❌ 취소
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="currency">기준 통화</label>
+                        <div style="display: flex; gap: 10px; align-items: end;">
+                            <select id="currency" style="flex: 1;">
+                                <option value="USD">🇺🇸 USD (미국 달러)</option>
+                                <option value="EUR">🇪🇺 EUR (유럽 유로)</option>
+                                <option value="JPY">🇯🇵 JPY (일본 엔)</option>
+                                <option value="CNY">🇨🇳 CNY (중국 위안)</option>
+                                <option value="GBP">🇬🇧 GBP (영국 파운드)</option>
+                            </select>
+                            <button type="button" class="btn btn-small" id="deleteCurrencyBtn" style="background: #dc3545;">
+                                🗑️
+                            </button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="exchangeRate"><span id="currencyLabel">USD</span> → KRW 환율</label>
+                        <div style="display: flex; gap: 10px;">
+                            <div class="input-wrapper" style="flex: 1;">
+                                <input type="number" id="exchangeRate" step="0.1" placeholder="1300">
+                                <span class="unit">원</span>
+                            </div>
+                            <button type="button" class="btn btn-small" id="getRealTimeRate">
+                                🔄 실시간 조회
+                            </button>
+                        </div>
+                        <div id="rateInfo" class="exchange-rate-info" style="display: none;">
+                            <span id="rateSource"></span>
+                        </div>
+                        <div id="rateLoading" class="loading">환율 정보를 가져오는 중...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 세무 및 수수료 -->
+            <div class="section">
+                <h3 class="section-title">
+                    <span class="icon">📊</span>
+                    세무 및 수수료
+                </h3>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="taxType">세무 유형</label>
+                        <select id="taxType">
+                            <option value="0">간이과세 (부가세 면제)</option>
+                            <option value="10">일반과세 (부가세 10%)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 15px;">
+                            <input type="checkbox" id="includeSpecialTax" style="width: auto; margin: 0;">
+                            <span>종소세 포함 (3%)</span>
+                        </label>
+                        <div style="color: #6c757d; font-size: 0.9rem; line-height: 1.4;">
+                            특정 품목에 적용되는 추가 세금입니다.<br>
+                            해당 품목이 아닌 경우 체크 해제하세요.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>마켓 수수료 프리셋</label>
+                        <div class="preset-buttons">
+                            <button type="button" class="preset-btn" data-fee="5">스마트스토어<br>5%</button>
+                            <button type="button" class="preset-btn" data-fee="8.5">쿠팡<br>8.5%</button>
+                            <button type="button" class="preset-btn" data-fee="11">11번가<br>11%</button>
+                            <button type="button" class="preset-btn" data-fee="13">지마켓<br>13%</button>
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="number" id="marketFee" step="0.1" placeholder="5.0">
+                            <span class="unit">%</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="targetMargin">목표 마진율</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="targetMargin" step="0.1" placeholder="20.0">
+                            <span class="unit">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 계산 결과 -->
+            <div class="section">
+                <div class="results" id="results">
+                    <div class="result-item">
+                        <div class="result-label">총 원가</div>
+                        <div class="result-value" id="totalCost">0원</div>
+                    </div>
+
+                    <div class="result-highlight">
+                        <div class="result-label">권장 판매가</div>
+                        <div class="result-value" id="recommendedPrice">0원</div>
+                    </div>
+
+                    <div class="result-highlight">
+                        <div class="result-label">예상 순이익</div>
+                        <div class="result-value" id="expectedProfit">0원</div>
+                    </div>
+
+                    <div class="breakdown">
+                        <h4 style="margin-bottom: 15px; color: #495057;">수익 구조 상세</h4>
+                        <div class="breakdown-item">
+                            <span>상품 원가</span>
+                            <span id="productCostKRW">0원</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>배송비</span>
+                            <span id="shippingCostBreakdown">0원</span>
+                        </div>
+                        <div class="breakdown-item breakdown-subtotal">
+                            <span><strong>총 원가</strong></span>
+                            <span id="totalCostBreakdown"><strong>0원</strong></span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>세금</span>
+                            <span id="taxAmount">0원</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>마켓 수수료</span>
+                            <span id="marketFeeAmount">0원</span>
+                        </div>
+                        <div class="breakdown-item breakdown-subtotal">
+                            <span><strong>실제 정산금액</strong></span>
+                            <span id="actualSettlement"><strong>0원</strong></span>
+                        </div>
+                        <div class="breakdown-item breakdown-final">
+                            <span><strong>순이익 (마진)</strong></span>
+                            <span id="netProfitBreakdown"><strong>0원</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 설정 저장/불러오기
+        function saveSettings() {
+            const settings = {
+                productPrice: document.getElementById('productPrice').value,
+                shippingFee: document.getElementById('shippingFee').value,
+                currency: document.getElementById('currency').value,
+                exchangeRate: document.getElementById('exchangeRate').value,
+                taxType: document.getElementById('taxType').value,
+                includeSpecialTax: document.getElementById('includeSpecialTax').checked,
+                marketFee: document.getElementById('marketFee').value,
+                targetMargin: document.getElementById('targetMargin').value
+            };
+            localStorage.setItem('marginCalculatorSettings', JSON.stringify(settings));
+        }
+
+        function loadSettings() {
+            const saved = localStorage.getItem('marginCalculatorSettings');
+            if (saved) {
+                try {
+                    const settings = JSON.parse(saved);
+                    Object.keys(settings).forEach(key => {
+                        const element = document.getElementById(key);
+                        if (element) {
+                            if (element.type === 'checkbox') {
+                                element.checked = settings[key] === true;
+                            } else if (settings[key] !== undefined && settings[key] !== '') {
+                                element.value = settings[key];
+                            }
+                        }
+                    });
+                    // 통화 변경에 따른 UI 업데이트
+                    updateCurrencyUI();
+                } catch (e) {
+                    console.error('설정 로드 실패:', e);
+                }
+            }
+        }
+
+        // 기본 통화별 환율 기준값 (모의 데이터)
+        const defaultCurrencyRates = {
+            USD: { base: 1320, range: 40, name: '미국 달러', flag: '🇺🇸' },
+            EUR: { base: 1450, range: 50, name: '유럽 유로', flag: '🇪🇺' },
+            JPY: { base: 9.8, range: 0.5, name: '일본 엔', flag: '🇯🇵' },
+            CNY: { base: 185, range: 10, name: '중국 위안', flag: '🇨🇳' },
+            GBP: { base: 1680, range: 60, name: '영국 파운드', flag: '🇬🇧' }
+        };
+
+        // 사용자 정의 통화 저장/불러오기
+        function getCustomCurrencies() {
+            const saved = localStorage.getItem('customCurrencies');
+            return saved ? JSON.parse(saved) : {};
+        }
+
+        function saveCustomCurrency(code, data) {
+            const custom = getCustomCurrencies();
+            custom[code] = data;
+            localStorage.setItem('customCurrencies', JSON.stringify(custom));
+        }
+
+        function deleteCustomCurrency(code) {
+            const custom = getCustomCurrencies();
+            delete custom[code];
+            localStorage.setItem('customCurrencies', JSON.stringify(custom));
+        }
+
+        // 전체 통화 목록 가져오기 (기본 + 사용자 정의)
+        function getAllCurrencies() {
+            return { ...defaultCurrencyRates, ...getCustomCurrencies() };
+        }
+
+        // 통화 목록 UI 업데이트
+        function updateCurrencySelect() {
+            const select = document.getElementById('currency');
+            const currentValue = select.value;
+            const allCurrencies = getAllCurrencies();
+            
+            // 기존 옵션 삭제 (기본 통화 제외)
+            while (select.children.length > 5) {
+                select.removeChild(select.lastChild);
+            }
+            
+            // 사용자 정의 통화 추가
+            const customCurrencies = getCustomCurrencies();
+            Object.keys(customCurrencies).forEach(code => {
+                const currency = customCurrencies[code];
+                const option = document.createElement('option');
+                option.value = code;
+                option.textContent = `${currency.flag} ${code} (${currency.name})`;
+                option.className = 'currency-custom';
+                select.appendChild(option);
+            });
+            
+            // 이전 선택값 복원
+            if (currentValue && allCurrencies[currentValue]) {
+                select.value = currentValue;
+            }
+        }
+
+        // 통화 선택 UI 업데이트
+        function updateCurrencyUI() {
+            const currency = document.getElementById('currency').value;
+            const currencyLabel = document.getElementById('currencyLabel');
+            const productPriceUnit = document.getElementById('productPriceUnit');
+            const allCurrencies = getAllCurrencies();
+            
+            currencyLabel.textContent = currency;
+            productPriceUnit.textContent = currency;
+            
+            // 삭제 버튼 표시 여부 (사용자 정의 통화인 경우만)
+            const deleteBtn = document.getElementById('deleteCurrencyBtn');
+            const customCurrencies = getCustomCurrencies();
+            if (customCurrencies[currency]) {
+                deleteBtn.style.display = 'block';
+            } else {
+                deleteBtn.style.display = 'none';
+            }
+            
+            // 기본 환율 설정 (저장된 값이 없는 경우)
+            const exchangeRateInput = document.getElementById('exchangeRate');
+            if (!exchangeRateInput.value) {
+                const rateInfo = allCurrencies[currency];
+                if (rateInfo) {
+                    exchangeRateInput.value = rateInfo.base;
+                }
+            }
+        }
+
+        // 실시간 환율 조회 (모의 데이터)
+        async function getRealTimeExchangeRate() {
+            const loading = document.getElementById('rateLoading');
+            const rateInfo = document.getElementById('rateInfo');
+            const rateSource = document.getElementById('rateSource');
+            const exchangeRateInput = document.getElementById('exchangeRate');
+            const currency = document.getElementById('currency').value;
+            const allCurrencies = getAllCurrencies();
+
+            loading.style.display = 'block';
+            rateInfo.style.display = 'none';
+
+            // 실제 환율 API 연동 대신 모의 데이터 사용
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1000)); // 로딩 시뮬레이션
+                
+                // 선택된 통화에 따른 모의 환율 데이터
+                const rateData = allCurrencies[currency];
+                if (!rateData) {
+                    throw new Error('통화 정보를 찾을 수 없습니다.');
+                }
+                
+                const mockRate = rateData.base + Math.random() * rateData.range - (rateData.range / 2);
+                const roundedRate = currency === 'JPY' ? 
+                    Math.round(mockRate * 100) / 100 : 
+                    Math.round(mockRate * 10) / 10;
+                
+                exchangeRateInput.value = roundedRate;
+                rateSource.textContent = `${rateData.name} 환율 업데이트: ${new Date().toLocaleString()} (모의 데이터)`;
+                rateInfo.style.display = 'block';
+                
+                calculateMargin();
+                saveSettings();
+                
+                // 성공 메시지
+                showMessage(`${currency} 환율이 업데이트되었습니다!`, 'success');
+                
+            } catch (error) {
+                showMessage('환율 조회에 실패했습니다. 수동으로 입력해주세요.', 'error');
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        // 통화 추가 폼 표시/숨김
+        function toggleAddCurrencyForm() {
+            const form = document.getElementById('addCurrencyForm');
+            const isVisible = form.style.display !== 'none';
+            
+            if (isVisible) {
+                form.style.display = 'none';
+                clearAddCurrencyForm();
+            } else {
+                form.style.display = 'block';
+                document.getElementById('newCurrencyCode').focus();
+            }
+        }
+
+        // 통화 추가 폼 초기화
+        function clearAddCurrencyForm() {
+            document.getElementById('newCurrencyCode').value = '';
+            document.getElementById('newCurrencyName').value = '';
+            document.getElementById('newCurrencyFlag').value = '';
+            document.getElementById('newCurrencyRate').value = '';
+        }
+
+        // 새 통화 저장
+        function addNewCurrency() {
+            const code = document.getElementById('newCurrencyCode').value.toUpperCase().trim();
+            const name = document.getElementById('newCurrencyName').value.trim();
+            const flag = document.getElementById('newCurrencyFlag').value.trim();
+            const rate = parseFloat(document.getElementById('newCurrencyRate').value);
+
+            // 유효성 검사
+            if (!code || code.length !== 3) {
+                showMessage('통화 코드는 3자리 영문자여야 합니다. (예: AUD)', 'error');
+                return;
+            }
+
+            if (!name) {
+                showMessage('통화 이름을 입력해주세요.', 'error');
+                return;
+            }
+
+            if (!rate || rate <= 0) {
+                showMessage('올바른 환율을 입력해주세요.', 'error');
+                return;
+            }
+
+            // 중복 검사
+            const allCurrencies = getAllCurrencies();
+            if (allCurrencies[code]) {
+                showMessage('이미 존재하는 통화 코드입니다.', 'error');
+                return;
+            }
+
+            // 새 통화 저장
+            const newCurrency = {
+                base: rate,
+                range: Math.max(rate * 0.05, 1), // 기본 환율의 5% 또는 최소 1
+                name: name,
+                flag: flag || '🌍'
+            };
+
+            saveCustomCurrency(code, newCurrency);
+            updateCurrencySelect();
+            
+            // 새로 추가된 통화로 선택
+            document.getElementById('currency').value = code;
+            updateCurrencyUI();
+            
+            // 폼 닫기
+            toggleAddCurrencyForm();
+            
+            showMessage(`${flag} ${code} (${name}) 통화가 추가되었습니다!`, 'success');
+            saveSettings();
+        }
+
+        // 사용자 정의 통화 삭제
+        function deleteSelectedCurrency() {
+            const currency = document.getElementById('currency').value;
+            const customCurrencies = getCustomCurrencies();
+            
+            if (!customCurrencies[currency]) {
+                showMessage('기본 통화는 삭제할 수 없습니다.', 'error');
+                return;
+            }
+
+            if (confirm(`${currency} 통화를 삭제하시겠습니까?`)) {
+                deleteCustomCurrency(currency);
+                
+                // USD로 선택 변경
+                document.getElementById('currency').value = 'USD';
+                updateCurrencySelect();
+                updateCurrencyUI();
+                
+                showMessage(`${currency} 통화가 삭제되었습니다.`, 'success');
+                saveSettings();
+            }
+        }
+
+        // 메시지 표시
+        function showMessage(message, type) {
+            const existing = document.querySelector('.message');
+            if (existing) existing.remove();
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `${type} message`;
+            messageDiv.textContent = message;
+            
+            const rateInfo = document.getElementById('rateInfo');
+            rateInfo.parentNode.appendChild(messageDiv);
+            
+            setTimeout(() => messageDiv.remove(), 3000);
+        }
+
+        // 마진 계산 함수
+        function calculateMargin() {
+            try {
+                const productPrice = parseFloat(document.getElementById('productPrice').value) || 0;
+                const shippingFee = parseFloat(document.getElementById('shippingFee').value) || 0;
+                const exchangeRate = parseFloat(document.getElementById('exchangeRate').value) || 0;
+                const baseTaxRate = parseFloat(document.getElementById('taxType').value) || 0;
+                const includeSpecialTax = document.getElementById('includeSpecialTax').checked;
+                const marketFeeRate = parseFloat(document.getElementById('marketFee').value) || 0;
+                const targetMarginRate = parseFloat(document.getElementById('targetMargin').value) || 0;
+
+                if (!productPrice || !exchangeRate) {
+                    return;
+                }
+
+                // 총 세율 계산 (기본 세율 + 종소세)
+                const specialTaxRate = includeSpecialTax ? 3 : 0;
+                const totalTaxRate = baseTaxRate + specialTaxRate;
+
+                // 계산
+                const productCostKRW = productPrice * exchangeRate;
+                const totalCost = productCostKRW + shippingFee;
+                
+                // 판매가 계산: 판매가 = 총원가 ÷ (1 - 목표마진율 - 마켓수수료율 - 세금율)
+                const totalRateDeduction = (targetMarginRate + marketFeeRate + totalTaxRate) / 100;
+                const recommendedPrice = Math.ceil(totalCost / (1 - totalRateDeduction));
+                
+                // 세부 계산
+                const taxAmount = Math.round(recommendedPrice * totalTaxRate / 100);
+                const marketFeeAmount = Math.round(recommendedPrice * marketFeeRate / 100);
+                const expectedProfit = recommendedPrice - totalCost - taxAmount - marketFeeAmount;
+
+                // 통화 정보 가져오기
+                const currency = document.getElementById('currency').value;
+
+                // 정산금액 계산 (판매가에서 세금과 수수료를 뺀 실제 받는 금액)
+                const actualSettlementAmount = recommendedPrice - taxAmount - marketFeeAmount;
+
+                // 결과 표시
+                document.getElementById('productCostKRW').textContent = formatCurrency(productCostKRW) + ` (${productPrice} ${currency})`;
+                document.getElementById('shippingCostBreakdown').textContent = formatCurrency(shippingFee);
+                document.getElementById('totalCostBreakdown').textContent = formatCurrency(totalCost);
+                document.getElementById('totalCost').textContent = formatCurrency(totalCost);
+                document.getElementById('recommendedPrice').textContent = formatCurrency(recommendedPrice);
+                document.getElementById('expectedProfit').textContent = formatCurrency(expectedProfit);
+                
+                // 세금 상세 표시
+                const taxLabel = includeSpecialTax ? 
+                    `세금 (${baseTaxRate}% + 종소세 3%)` : 
+                    `세금 (${baseTaxRate}%)`;
+                document.getElementById('taxAmount').textContent = formatCurrency(taxAmount);
+                
+                // 세금 라벨 업데이트
+                const taxBreakdownItem = document.querySelector('.breakdown-item:nth-child(4) span:first-child');
+                if (taxBreakdownItem) {
+                    taxBreakdownItem.textContent = taxLabel;
+                }
+                
+                document.getElementById('marketFeeAmount').textContent = formatCurrency(marketFeeAmount);
+                document.getElementById('actualSettlement').textContent = formatCurrency(actualSettlementAmount);
+                document.getElementById('netProfitBreakdown').textContent = formatCurrency(expectedProfit);
+
+            } catch (error) {
+                console.error('계산 오류:', error);
+            }
+        }
+
+        // 통화 포맷팅
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('ko-KR', {
+                style: 'currency',
+                currency: 'KRW'
+            }).format(amount);
+        }
+
+        // 프리셋 버튼 이벤트
+        function setupPresetButtons() {
+            const presetBtns = document.querySelectorAll('.preset-btn');
+            const marketFeeInput = document.getElementById('marketFee');
+
+            presetBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 모든 버튼의 active 클래스 제거
+                    presetBtns.forEach(b => b.classList.remove('active'));
+                    // 현재 버튼에 active 클래스 추가
+                    this.classList.add('active');
+                    
+                    // 수수료 값 설정
+                    const fee = this.getAttribute('data-fee');
+                    marketFeeInput.value = fee;
+                    
+                    calculateMargin();
+                    saveSettings();
+                });
+            });
+        }
+
+        // 이벤트 리스너 설정
+        function setupEventListeners() {
+            const inputs = document.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                // 통화 추가 폼 필드는 제외
+                if (input.id.startsWith('new')) return;
+                
+                if (input.type === 'checkbox') {
+                    input.addEventListener('change', () => {
+                        calculateMargin();
+                        saveSettings();
+                    });
+                } else {
+                    input.addEventListener('input', () => {
+                        calculateMargin();
+                        saveSettings();
+                    });
+                }
+            });
+
+            // 통화 변경 시 UI 업데이트
+            document.getElementById('currency').addEventListener('change', () => {
+                updateCurrencyUI();
+                calculateMargin();
+                saveSettings();
+            });
+
+            // 환율 관련 버튼
+            document.getElementById('getRealTimeRate').addEventListener('click', getRealTimeExchangeRate);
+            document.getElementById('addCurrencyBtn').addEventListener('click', toggleAddCurrencyForm);
+            document.getElementById('deleteCurrencyBtn').addEventListener('click', deleteSelectedCurrency);
+
+            // 통화 추가 폼 버튼
+            document.getElementById('saveCurrency').addEventListener('click', addNewCurrency);
+            document.getElementById('cancelAddCurrency').addEventListener('click', toggleAddCurrencyForm);
+
+            // 통화 코드 입력 시 자동 대문자 변환
+            document.getElementById('newCurrencyCode').addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
+            });
+
+            // Enter 키로 통화 추가
+            document.getElementById('addCurrencyForm').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    addNewCurrency();
+                }
+            });
+
+            setupPresetButtons();
+        }
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCurrencySelect(); // 사용자 정의 통화 목록 업데이트
+            loadSettings();
+            updateCurrencyUI();
+            setupEventListeners();
+            calculateMargin();
+        });
+    </script>
+</body>
+</html>
